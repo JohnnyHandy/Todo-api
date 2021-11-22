@@ -8,7 +8,25 @@
 
 case Rails.env
 when "development"
-    10.times do |i|
-    Todo.create!(title: "Title ##{i}", description: "Description #{i}")
+    puts "Adding users"
+    5.times do |i|
+        attributes = {
+          "email": Faker::Internet.email,
+          "password": "123456",
+        }
+        user = User.new(attributes)
+        user.save!
     end
+    puts "Finished adding users"
+    puts "Adding Todos"
+    User.all.each do |user|
+        rand(1..3).times do |i|
+            todo = Todo.create(
+                title: "Title ##{i}",
+                description: "Description #{i}",
+                user_id: user.id
+            )
+        end
+    end
+    puts "Finished adding todos"
 end

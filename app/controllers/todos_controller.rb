@@ -1,11 +1,16 @@
 class TodosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_todo, only: [:show, :update, :destroy]
-
+  before_action :check_owner, only: [:show, :update, :destroy]
   # GET /todos
   def index
-    @todos = Todo.all
-
-    render json: @todos
+    @user = current_user
+    if @user
+      @todos = @user.todos.all
+      render json: @todos
+    else
+      head :unauthorized
+    end
   end
 
   # GET /todos/1
@@ -16,7 +21,7 @@ class TodosController < ApplicationController
   # POST /todos
   def create
     @todo = Todo.new(todo_params)
-
+    @todo.user = current_user
     if @todo.save
       render json: @todo, status: :created, location: @todo
     else
@@ -46,6 +51,10 @@ class TodosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def todo_params
-      params.require(:todo).permit(:title, :description)
+      params.require(:todo).permit(:title, :description, :user_id)
+    end
+    
+    def check_owner
+      head :unauthorized unless current_user.id == @todo.user_id
     end
 end
