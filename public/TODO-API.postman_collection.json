@@ -1,0 +1,443 @@
+{
+	"info": {
+		"_postman_id": "0023b546-663c-46c5-8136-42cea4f9aed3",
+		"name": "TODO-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "Create todo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code = 201) {",
+									"    responseHeaders['access-token'] && pm.environment.set(\"access-token\", responseHeaders['access-token'])",
+									"    responseHeaders['token-type'] && pm.environment.set(\"token-type\", responseHeaders['token-type'])",
+									"    responseHeaders['client'] && pm.environment.set(\"client\", responseHeaders['client'])",
+									"    responseHeaders['expiry'] && pm.environment.set(\"expiry\",responseHeaders['expiry'])",
+									"    responseHeaders['uid'] && pm.environment.set(\"uid\", responseHeaders['uid'])",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"type": "text",
+								"value": "{{access-token}}"
+							},
+							{
+								"key": "token-type",
+								"type": "text",
+								"value": "{{token-type}}"
+							},
+							{
+								"key": "client",
+								"type": "text",
+								"value": "{{client}}"
+							},
+							{
+								"key": "expiry",
+								"type": "text",
+								"value": "{{expiry}}"
+							},
+							{
+								"key": "uid",
+								"type": "text",
+								"value": "{{uid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"My new todo\",\n    \"description\": \"My new todo description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code = 200) {",
+									"    responseHeaders['access-token'] && pm.environment.set(\"access-token\", responseHeaders['access-token'])",
+									"    responseHeaders['token-type'] && pm.environment.set(\"token-type\", responseHeaders['token-type'])",
+									"    responseHeaders['client'] && pm.environment.set(\"client\", responseHeaders['client'])",
+									"    responseHeaders['expiry'] && pm.environment.set(\"expiry\",responseHeaders['expiry'])",
+									"    responseHeaders['uid'] && pm.environment.set(\"uid\", responseHeaders['uid'])",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{access-token}}",
+								"type": "text"
+							},
+							{
+								"key": "token-type",
+								"value": "{{token-type}}",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "{{client}}",
+								"type": "text"
+							},
+							{
+								"key": "expiry",
+								"value": "{{expiry}}",
+								"type": "text"
+							},
+							{
+								"key": "uid",
+								"value": "{{uid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get todos by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code = 200) {",
+									"    responseHeaders['access-token'] && pm.environment.set(\"access-token\", responseHeaders['access-token'])",
+									"    responseHeaders['token-type'] && pm.environment.set(\"token-type\", responseHeaders['token-type'])",
+									"    responseHeaders['client'] && pm.environment.set(\"client\", responseHeaders['client'])",
+									"    responseHeaders['expiry'] && pm.environment.set(\"expiry\",responseHeaders['expiry'])",
+									"    responseHeaders['uid'] && pm.environment.set(\"uid\", responseHeaders['uid'])",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"type": "text",
+								"value": "{{access-token}}"
+							},
+							{
+								"key": "token-type",
+								"type": "text",
+								"value": "{{token-type}}"
+							},
+							{
+								"key": "client",
+								"type": "text",
+								"value": "{{client}}"
+							},
+							{
+								"key": "expiry",
+								"type": "text",
+								"value": "{{expiry}}"
+							},
+							{
+								"key": "uid",
+								"type": "text",
+								"value": "{{uid}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/todos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Todo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code = 200) {",
+									"    responseHeaders['access-token'] && pm.environment.set(\"access-token\", responseHeaders['access-token'])",
+									"    responseHeaders['token-type'] && pm.environment.set(\"token-type\", responseHeaders['token-type'])",
+									"    responseHeaders['client'] && pm.environment.set(\"client\", responseHeaders['client'])",
+									"    responseHeaders['expiry'] && pm.environment.set(\"expiry\",responseHeaders['expiry'])",
+									"    responseHeaders['uid'] && pm.environment.set(\"uid\", responseHeaders['uid'])",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "access-token",
+								"type": "text",
+								"value": "{{access-token}}"
+							},
+							{
+								"key": "token-type",
+								"type": "text",
+								"value": "{{token-type}}"
+							},
+							{
+								"key": "client",
+								"type": "text",
+								"value": "{{client}}"
+							},
+							{
+								"key": "expiry",
+								"type": "text",
+								"value": "{{expiry}}"
+							},
+							{
+								"key": "uid",
+								"type": "text",
+								"value": "{{uid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Updated todo title\",\n    \"description\": \"Updated todo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/todos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Todo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code = 204) {",
+									"    responseHeaders['access-token'] && pm.environment.set(\"access-token\", responseHeaders['access-token'])",
+									"    responseHeaders['token-type'] && pm.environment.set(\"token-type\", responseHeaders['token-type'])",
+									"    responseHeaders['client'] && pm.environment.set(\"client\", responseHeaders['client'])",
+									"    responseHeaders['expiry'] && pm.environment.set(\"expiry\",responseHeaders['expiry'])",
+									"    responseHeaders['uid'] && pm.environment.set(\"uid\", responseHeaders['uid'])",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "access-token",
+								"type": "text",
+								"value": "{{access-token}}"
+							},
+							{
+								"key": "token-type",
+								"type": "text",
+								"value": "{{token-type}}"
+							},
+							{
+								"key": "client",
+								"type": "text",
+								"value": "{{client}}"
+							},
+							{
+								"key": "expiry",
+								"type": "text",
+								"value": "{{expiry}}"
+							},
+							{
+								"key": "uid",
+								"type": "text",
+								"value": "{{uid}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/todos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@email.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"",
+									"if(pm.response.code = 200) {",
+									"    pm.environment.set(\"access-token\", responseHeaders['access-token']);",
+									"    pm.environment.set(\"token-type\", responseHeaders['token-type'])",
+									"    pm.environment.set(\"client\", responseHeaders['client'])",
+									"    pm.environment.set(\"expiry\",responseHeaders['expiry'])",
+									"    pm.environment.set(\"uid\", responseHeaders['uid'])",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@email.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/sign_in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"sign_in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
