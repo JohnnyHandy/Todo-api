@@ -1,12 +1,17 @@
 class TodosController < ApplicationController
   before_action :authenticate_user!
   before_action :set_todo, only: [:show, :update, :destroy]
-  before_action :check_owner, only: [:show, :update, :destroy]
+  # before_action :check_permission, only: [:show, :update, :destroy]
+  rescue_from Pundit::NotAuthorizedError, with: Proc.new { head :forbidden }
   # GET /todos
   def index
     @user = current_user
     if @user
-      @todos = @user.todos.all
+      if @user.admin
+        @todos = Todo.all
+      else
+        @todos = @user.todos.all
+      end
       render json: @todos
     else
       head :unauthorized
@@ -46,7 +51,7 @@ class TodosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo
-      @todo = Todo.find(params[:id])
+      @todo = authorize Todo.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -54,7 +59,7 @@ class TodosController < ApplicationController
       params.require(:todo).permit(:title, :description, :user_id)
     end
     
-    def check_owner
-      head :unauthorized unless current_user.id == @todo.user_id
-    end
+    # def check_permission
+    #   head :unauthorized unless (current_user.id == @todo.user_id || current_user.admin?)
+    # end
 end
