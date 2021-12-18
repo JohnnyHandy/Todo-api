@@ -17,6 +17,11 @@ when "development"
         user = User.new(attributes)
         user.save!
     end
+    User.create(
+        "email": "admin@admin.com",
+        "password": "123456",
+        "admin": true
+    )
     puts "Finished adding users"
     puts "Adding Todos"
     User.all.each do |user|

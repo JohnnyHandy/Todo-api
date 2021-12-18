@@ -367,7 +367,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"user@email.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+							"raw": "{\n    \"email\": \"user@email.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -415,7 +415,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"user@email.com\",\n    \"password\": \"password\"\n}",
+							"raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\": \"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
